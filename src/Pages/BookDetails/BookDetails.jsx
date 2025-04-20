@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router';
 import { useParams } from 'react-router';
+import { addToStoredDB } from '../../Utility/addToDB';
 
 const BookDetails = () => {
     const {id} = useParams();
@@ -8,9 +9,9 @@ const BookDetails = () => {
     const data = useLoaderData();
     const singleBook = data.find(book => book.bookId === bookId);
     
-    const { bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing } = singleBook || {};
+    const { bookName, image } = singleBook || {};
 const handleMarkAsRead = id => {
-    
+    addToStoredDB(id)
 }
 
     return (
@@ -18,7 +19,7 @@ const handleMarkAsRead = id => {
             <h1>{bookName}</h1>
             <img className='w-40' src={image} alt="" />
             <div className='flex gap-5'>
-                <button className='btn'>mark as Read</button>
+                <button onClick={() => handleMarkAsRead(id) } className='btn'>mark as Read</button>
                 <button className='btn'> Add To WishList</button>
             </div>
         </div>

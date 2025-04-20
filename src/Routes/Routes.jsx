@@ -8,6 +8,7 @@ import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 import Home from '../Pages/Home/Home';
 import ListedBooks from '../Pages/ListedBooks/ListedBooks';
 import BookDetails from '../Pages/BookDetails/BookDetails';
+import ReadList from '../Pages/ReadList/ReadList';
 
 
 
@@ -24,7 +25,12 @@ export  const router = createBrowserRouter([
             Component:Home
         },
         {
+          path:"ReadList",
+          Component: ReadList
+        },
+        {
           path:"ListedBooks",
+          loader:() => fetch('booksData.json'),
           Component:ListedBooks
         },
         {
